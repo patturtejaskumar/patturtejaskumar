@@ -1,0 +1,333 @@
+structure:
+  X: []
+  layers:
+  - description: Raw counts
+    dtype: float32
+    name: counts
+    schema_type: integer
+    shape:
+    - 400
+    - 10000
+    type: sparsematrix
+  - dtype: float32
+    name: normalized
+    shape:
+    - 400
+    - 10000
+    type: sparsematrix
+  obs:
+  - description: A batch identifier. This label is very context-dependent and may
+      be a combination of the tissue, assay, donor, etc.
+    dtype: category
+    name: batch
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Type of assay used to generate the cell data, indicating the methodology
+      or technique employed.
+    dtype: category
+    name: assay
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Specific tissue from which the cells were derived, key for context
+      and specificity in cell studies.
+    dtype: category
+    name: tissue
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Identifier for the donor from whom the cell sample is obtained.
+    dtype: category
+    name: donor_id
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Biological sex of the donor or source organism, crucial for studies
+      involving sex-specific traits or conditions.
+    dtype: category
+    name: sex
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Identifier for the dataset from which the cell data is derived, useful
+      for tracking and referencing purposes.
+    dtype: category
+    name: dataset_id
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Classification of the cell type based on its characteristics and
+      function within the tissue or organism.
+    dtype: category
+    name: cell_type
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Classification of the cell type based on its characteristics and
+      function within the tissue or organism.
+    dtype: category
+    name: cell_type_level2
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Classification of the cell type based on its characteristics and
+      function within the tissue or organism.
+    dtype: category
+    name: cell_type_level3
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Classification of the cell type based on its characteristics and
+      function within the tissue or organism.
+    dtype: category
+    name: cell_type_level4
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Information on any disease or pathological condition associated with
+      the cell or donor.
+    dtype: category
+    name: disease
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: 'Ontology term identifier for the disease, enabling standardized
+      disease classification and referencing.
+
+
+      Must be a term from the Mondo Disease Ontology (`MONDO:`) ontology term, or
+      `PATO:0000461` from the Phenotype And Trait Ontology (`PATO:`).
+
+      '
+    dtype: category
+    name: disease_ontology_term_id
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Organism from which the cell sample is obtained.
+    dtype: category
+    name: organism
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: 'Ontology term identifier for the organism, providing a standardized
+      reference for the organism.
+
+
+      Must be a term from the NCBI Taxonomy Ontology (`NCBITaxon:`) which is a child
+      of `NCBITaxon:33208`.
+
+      '
+    dtype: category
+    name: organism_ontology_term_id
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: General category or classification of the tissue, useful for broader
+      grouping and comparison of cell data.
+    dtype: category
+    name: tissue_general
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: 'Ontology term identifier for the general tissue category, aiding
+      in standardizing and grouping tissue types.
+
+
+      For organoid or tissue samples, the Uber-anatomy ontology (`UBERON:`) is used.
+      The term ids must be a child term of `UBERON:0001062` (anatomical entity).
+
+      For cell cultures, the Cell Ontology (`CL:`) is used. The term ids cannot be
+      `CL:0000255`, `CL:0000257` or `CL:0000548`.
+
+      '
+    dtype: category
+    name: tissue_general_ontology_term_id
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: Stage of development of the organism or tissue from which the cell
+      is derived, indicating its maturity or developmental phase.
+    dtype: category
+    name: development_stage
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - description: "Ontology term identifier for the developmental stage, providing\
+      \ a standardized reference to the organism's developmental phase.\n\nIf the\
+      \ organism is human (`organism_ontology_term_id == 'NCBITaxon:9606'`), then\
+      \ the Human Developmental Stages (`HsapDv:`) ontology is used.  \nIf the organism\
+      \ is mouse (`organism_ontology_term_id == 'NCBITaxon:10090'`), then the Mouse\
+      \ Developmental Stages (`MmusDv:`) ontology is used.\nOtherwise, the Uberon\
+      \ (`UBERON:`) ontology is used.\n"
+    dtype: category
+    name: development_stage_ontology_term_id
+    schema_type: string
+    shape:
+    - 400
+    type: vector
+  - dtype: float32
+    name: n_counts
+    shape:
+    - 400
+    type: vector
+  - dtype: float32
+    name: size_factors
+    shape:
+    - 400
+    type: vector
+  obsm:
+  - dtype: float32
+    name: X_pca
+    shape:
+    - 400
+    - 50
+    type: densematrix
+  obsp:
+  - dtype: float32
+    name: knn_connectivities
+    shape:
+    - 400
+    - 400
+    type: sparsematrix
+  - dtype: float64
+    name: knn_distances
+    shape:
+    - 400
+    - 400
+    type: sparsematrix
+  uns:
+  - description: Long description of the dataset.
+    dtype: str
+    name: dataset_description
+    schema_type: string
+    shape:
+    - 1
+    type: atomic
+  - description: A unique identifier for the dataset. This is different from the `obs.dataset_id`
+      field, which is the identifier for the dataset from which the cell data is derived.
+    dtype: str
+    name: dataset_id
+    schema_type: string
+    shape:
+    - 1
+    type: atomic
+  - description: A human-readable name for the dataset.
+    dtype: str
+    name: dataset_name
+    schema_type: string
+    shape:
+    - 1
+    type: atomic
+  - description: The organism of the sample in the dataset.
+    dtype: str
+    name: dataset_organism
+    schema_type: string
+    shape:
+    - 1
+    type: atomic
+  - description: Bibtex reference of the paper in which the dataset was published.
+    dtype: str
+    name: dataset_reference
+    schema_type: string
+    shape:
+    - 1
+    type: atomic
+  - description: Short description of the dataset.
+    dtype: str
+    name: dataset_summary
+    schema_type: string
+    shape:
+    - 1
+    type: atomic
+  - description: Link to the original source of the dataset.
+    dtype: str
+    name: dataset_url
+    schema_type: string
+    shape:
+    - 1
+    type: atomic
+  - dtype: null
+    name: knn
+    shape:
+    - 3
+    type: dict
+  - dtype: str
+    name: normalization_id
+    shape:
+    - 1
+    type: atomic
+  - dtype: null
+    name: pca_variance
+    shape:
+    - 2
+    type: dict
+  var:
+  - description: A human-readable name for the feature, usually a gene symbol.
+    dtype: category
+    name: feature_name
+    schema_type: string
+    shape:
+    - 10000
+    type: vector
+  - description: Unique identifier for the feature, usually a ENSEMBL gene id.
+    dtype: object
+    name: feature_id
+    schema_type: string
+    shape:
+    - 10000
+    type: vector
+  - dtype: int64
+    name: n_cells
+    shape:
+    - 10000
+    type: vector
+  - dtype: bool
+    name: hvg
+    shape:
+    - 10000
+    type: vector
+  - dtype: float64
+    name: hvg_score
+    shape:
+    - 10000
+    type: vector
+  varm:
+  - dtype: float64
+    name: pca_loadings
+    shape:
+    - 10000
+    - 50
+    type: densematrix
+  varp: []
+uns:
+  dataset_description: See dataset_reference for more information. Note that we only
+    took the 10xv2 data from the dataset.
+  dataset_id: 2023_yao_mouse_brain_scrnaseq_10xv2_subsample
+  dataset_name: ABCA Mouse Brain scRNAseq
+  dataset_organism: mus_musculus
+  dataset_reference: 10.1038/s41586-023-06812-z
+  dataset_summary: A high-resolution scRNAseq atlas of cell types in the whole mouse
+    brain
+  dataset_url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE246717
+  date_created: 20-09-2024
+  file_size: 17645728
+  normalization_id: log_cp10k
